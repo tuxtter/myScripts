@@ -1,0 +1,93 @@
+yum -y update
+yum -y upgrade
+yum -y install wget
+mkdir $HOME/downloads
+cd $HOME/downloads
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jdk-8u102-linux-x64.rpm"
+rpm -ivh jdk-8u102-linux-x64.rpm
+wget --no-cookies --no-check-certificate --header "Cookie: gpw_e24=http%3A%2F%2Fwww.oracle.com%2F; oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/8u102-b14/jre-8u102-linux-x64.rpm"
+rpm -ivh jre-8u102-linux-x64.rpm
+wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/2.4.0/elasticsearch-2.4.0.rpm
+rpm -i elasticsearch-2.4.0.rpm
+sudo systemctl daemon-reload
+sudo systemctl enable elasticsearch.service
+
+vi /etc/elasticsearch/elasticsearch.yml
+cluster.name: es
+node.name: "es01"
+bootstrap.mlockall: true
+network.host: localhost
+discovery.zen.ping.multicast.enabled: false
+node.master: true
+node.data: true
+threadpool.search.queue_size: 100000
+action.disable_delete_all_indices: true
+indices.fielddata.cache.size: 25%
+indices.cluster.send_refresh_mapping: false
+threadpool.bulk.queue_size: 3000
+cluster.routing.allocation.allow_primary: true
+cluster.routing.allocation.enable: all
+index.max_result_window: 3000000
+index.number_of_shards: 1
+index.number_of_replicas: 0
+
+vi /etc/sysconfig/elasticsearch
+ES_HEAP_SIZE=32g
+MAX_OPEN_FILES=9965535
+
+rm -rf /var/lib/elasticsearch
+mkdir /home/elasticsearch
+ln -s /home/elasticsearch /var/lib/elasticsearch
+chown elasticsearch:elasticsearch -R /home/elasticsearch
+sudo systemctl start elasticsearch.service
+
+cd $HOME/downloads
+wget https://download.elastic.co/kibana/kibana/kibana-4.6.1-x86_64.rpm
+rpm -ivh kibana-4.6.1-x86_64.rpm
+
+vi /opt/kibana/config/kibana.yml
+server.port: 5601
+server.host: "localhost"
+elasticsearch.url: "http://localhost:9200"
+elasticsearch.preserveHost: true
+kibana.index: ".kibana"
+kibana.defaultAppId: "dashboard/overview"
+elasticsearch.requestTimeout: 300000
+elasticsearch.shardTimeout: 0
+
+sudo systemctl daemon-reload
+sudo systemctl enable kibana.service
+sudo systemctl start kibana.service
+
+wget https://download.elastic.co/logstash/logstash/packages/centos/logstash-2.4.0.noarch.rpm
+rpm -ivh logstash-2.4.0.noarch.rpm
+
+vi /etc/logstash/conf.d/logstash.conf
+
+sudo systemctl daemon-reload
+sudo systemctl enable logstash.service
+sudo systemctl start logstash.service
+
+yum -y install wget bzip2 gcc httpd-devel
+cd $HOME/downloads
+wget http://www.outoforder.cc/downloads/mod_auth_xradius/mod_auth_xradius-0.4.6.tar.bz2
+bzip2 -d mod_auth_xradius-0.4.6.tar.bz2
+tar xvf mod_auth_xradius-0.4.6.tar
+cd $HOME/downloads/mod_auth_xradius-0.4.6
+
+vi src/xradius_cache.c
+
+./configure --with-apxs=/usr/bin/apxs && make && make install
+
+yum -y install httpd mod_ssl openssl
+systemctl enable httpd.service
+mkdir /etc/httpd/ssl
+openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/httpd/ssl/apache.key -out /etc/httpd/ssl/apache.crt
+sed -i '/^SSLCertificateFile/ c SSLCertificateFile "/etc/httpd/ssl/apache.crt"' /etc/httpd/conf.d/ssl.conf
+sed -i '/^SSLCertificateKeyFile/ c SSLCertificateKeyFile "/etc/httpd/ssl/apache.key"' /etc/httpd/conf.d/ssl.conf
+firewall-cmd --permanent --add-port=443/tcp
+firewall-cmd --add-port=443/tcp
+
+vi /etc/httpd/conf.d/kibana.conf
+
+/usr/sbin/setsebool -P httpd_can_network_connect 1
