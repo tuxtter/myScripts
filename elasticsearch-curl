@@ -1,0 +1,23 @@
+#Estos comandos son sacados de la documentacion oficial de ELK, para mas detalle habra que consultarla.
+#Los pongo aqui para mi propia referencia y quiza ahorrarle tiempo de andar buscando a alguien mas.
+
+#Para checar el estado del cluster de elasticsearch
+curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'
+
+#Cuando tienes un solo nodo, tu "cluster ELK" aparecera en "Yellow" porque generara indices de tipo replica y no tendra donde asignarlos,
+entonces se debe correr un comando para indicar al elasticsearch que no cree replicas de los indices.
+curl -XPUT 'http://localhost:9200/*/_settings?pretty' -H 'Content-Type: application/json' -d '{"number_of_replicas": 0}'
+
+#O bien especificando el indice del cual no deseas crear replicas
+curl -XPUT 'http://localhost:9200/INDEXNAME/_settings?pretty' -H 'Content-Type: application/json' -d '{"number_of_replicas": 0}'
+#O bien con algun comodin INDEXN* para aplicar a mas de un indice.
+
+#Este comando me sirve para consultar en que folder esta guardando determinado indice, en algun momento necesite borrar o mover algun indice.
+curl -XGET 'http://localhost:9200/logstash-2018.03.2*/_settings?pretty' | grep uuid | awk -F '"' '{print $4}'
+#Para borrar directamente la carpeta
+curl -XGET 'http://localhost:9200/logstash-2018.03.2*/_settings?pretty' | grep uuid | awk -F '"' '{print $4}' | xargs rm -rf
+#Este otro para verificar que indices eran los que aparecen en el status como UNASSIGNED
+curl -XGET localhost:9200/_cat/shards?h=index,shard,prirep,state,unassigned.reason| grep UNASSIGNED
+#
+curl -XPUT 'http://localhost:9200/.kibana/_settings' -H 'Content-Type: application/json' -d '{ "index": { "blocks": { "read_only_allow_delete": "false" } } }'
+curl -s localhost:9200/_cat/shards | grep "p UNASS" | while read line ; do read -a fields <<<"$line" ; curl -XPOST -H 'Content-Type: application/json' -d '{ "commands" : [ { "allocate" : { "index" : "'${fields[0]}'", "shard" : '${fields[1]}', "node" : "elk01-nodo01", "allow_primary": "true" }}]}' http://localhost:9200/_cluster/reroute?pretty ; done &
