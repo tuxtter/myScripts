@@ -1,5 +1,5 @@
 #!/bin/sh
-# This script install OpenDistro for Elasticsearch tested in a CentOS clean installation.
+# This script install OpenDistro for Elasticsearch tested in a CentOS fresh installation.
 curl https://d3g5vo6xdbdb9a.cloudfront.net/yum/opendistroforelasticsearch-artifacts.repo -o /etc/yum.repos.d/opendistroforelasticsearch-artifacts.repo
 yum update
 yum install -y java-1.8.0-openjdk-devel unzip elasticsearch-oss-6.5.4
