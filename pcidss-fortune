@@ -1,0 +1,391 @@
+*Build and Maintain a Secure Network and Systems*
+
+        1. Install and maintain a firewall configuration to protect cardholder data
+        2. Do not use vendor-supplied defaults for system passwords and other security parameters
+
+        `PCIDSS v3.2.1`
+%
+*Protect Cardholder Data*
+
+        3. Protect stored cardholder data
+        4. Encrypt transmission of cardholder data across open, public networks
+
+        `PCIDSS v3.2.1`
+%
+*Maintain a Vulnerability Management Program*
+
+        5. Protect all systems against malware and regularly update anti-virus software or programs
+        6. Develop and maintain secure systems and applications
+
+        `PCIDSS v3.2.1`
+%
+*Implement Strong Access Control Measures*
+
+        7. Restrict access to cardholder data by business need to know
+        8. Identify and authenticate access to system components
+        9. Restrict physical access to cardholder data
+
+        `PCIDSS v3.2.1`
+%
+*Regularly Monitor and Test Networks*
+
+        10. Track and monitor all access to network resources and cardholder data
+        11. Regularly test security systems and processes
+
+        `PCIDSS v3.2.1`
+%
+*Maintain an Information Security Policy*
+
+        12. Maintain a policy that addresses information security for all personnel
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 1- Assessor Recommendations*
+
+`Typical Documentation Used:`
+```• Firewall and router configuration standards
+• Firewall and router change control process and change records
+• Network diagrams
+• Data flow diagrams
+• Documented roles and responsibilities
+• Firewall/Router rule sets
+• Records of firewall reviews
+• Vulnerability scans and penetration test results
+• Firewall/router vendor documentation
+• Information security policy and operational procedures
+• Configuration standards for remote computers```
+		
+`Typical testing activities for Requirement 1:`
+```• Review of firewall/router configuration standards, rule sets, network diagrams, and change control documentation
+• Observe firewall/router configurations and rules, and verify all Requirements are implemented as documented
+• Interview firewall/router administrators to verify roles and responsibilities, processes for implementing changes, and for justification of permitted ports, protocols, etc.
+• Compare results of a recent firewall rule-set review and change control documentation to actual configurations and the network diagram
+• Identify any wireless networks and confirm through physical review and firewall rule review that a firewall is installed between the wireless networks and the CDE
+• Examine firewalls to verify stateful inspection and anti-spoofing is enabled
+• Identify all storage locations of cardholder data, confirm through physical review, network scanning and/or firewall review that all data stores are on the internal network
+• Examine methods for preventing the disclosure of private IP addresses to the Internet
+• Review firewall configurations on a sample of laptops and remote systems```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 2 - Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 2:`
+```• Inventory of hardware and software system components
+• Information security policies and operational procedures
+• Wireless configuration standards
+• System configuration standards for all system types
+• Network diagrams (for location of system types)
+• Vendor documentation
+• Vulnerability scans and penetration test results```
+
+`Typical Testing Activities for Requirement 2:`
+```• Select samples of network devices, systems, and wireless access points and attempt (or observe attempts) to authenticate to the devices with default passwords.
+• Select samples of wireless components and confirm all default configurations have been changed and devices are configured to enforce strong encryption for authentication and transmission.
+• Review configuration standards for all in network devices, operating systems, databases, Web servers and other system components.
+• Validate the documented standards are consistent with industry-accepted best practices.
+• Select samples of systems components and validate the configuration standards are applied.
+• Review internal and external vulnerability scans to ensure results match with enabled services and protocols and there are no “unknown” services or ports detected.
+• Observe non-console log on processes to verify that strong encryption is in place for all authentication attempts.```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 3- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 3:`
+```• Information security policy
+• Data retention policy
+• Data disposal policy
+• Inventory of all locations and displays of cardholder data
+• Samples of all types of printed displays including receipts, if applicable
+• Process for identifying and securely deleting stored cardholder data
+• Vendor manuals and system configuration documentation
+• Output of database tables, t-logs, trace files, debug files, flat files, etc.
+• Evidence of the strength of encryption algorithms used
+• Storage locations for encryption and decryption keys
+• User access lists for cryptographic keys
+• Documented key management procedures
+• Sample of forms signed by key custodians```
+
+`Typical testing activities for Requirement 3:`
+```• Review policies and procedures and confirm they cover all requirements
+• Review data flows and system configurations to identify all locations where cardholder data is stored,processed, or transmitted
+• Review a sample of CHD locations and confirm CHD storage is within the data retention policy
+• Observe samples of systems and examine data stores defined in testing procedures 3.2.1 – 3.2.3s
+• Review displays of PAN to verify they are masked
+• Review roles and access lists for personnel who can view PAN
+• Examine stores of PAN to verify that PAN is rendered unreadable
+• Confirm encryption used meets the definition of strong encryption
+• Observe key management procedures and processes
+• Interview key custodians
+• Verify all required key management procedures are implemented```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 4- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 4:`
+```• System configuration standards for all systems involved in transmission of cardholder data
+• System configuration standards for wireless access points
+• Information Security Policies and operational procedures
+• End-User Messaging Policies```
+
+`Typical Testing Activities for Requirement 4:`
+```• Validate strong encryption is used
+• Confirm the implementation of strong encryption protocols by reviewing system configuration and certificates
+• Observe transmissions as they occur, and validate using a sniffing tool or other testing that all packets transmitted over untrusted networks are encrypted
+• Review system configurations to verify that:
+• Only trusted keys and/or certificates are accepted
+• The protocol implementation does not support insecure versions or configurations
+• Identify encryption strength used
+• Review wireless access point configuration(s) to verify industry best practices are used to secure wireless authentication and transmission
+• Interview personnel and observe system configurations and outbound transmissions to confirm policies for sending PAN data via end-user messaging technologies are implemented```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 5- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 5:`
+```• Information security policy and operational procedures
+• System inventory
+• System configuration standards
+• Vendor documentation
+• Log files```
+
+`Typical Testing Activities Assess Requirement 5:`
+```• Interview personnel to verify that evolving malware threats are monitored and evaluated
+• Review anti-virus policies and update procedures
+• Review master and client installations
+• Observe system configurations and logs files to confirm anti-virus software is implemented and configured on all in-scope systems
+• Sample systems to verify compliance with all sub-requirements
+• Review anti-virus signature files to confirm signatures are current
+• Observe processes to verify that anti-virus software cannot be disabled or altered, except where specifically authorized by management on a case-by-case basis for a limited time
+• Review anti-virus log files and log storage mechanism to confirm retention in accordance with PCI DSS Requirement 10.7```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 6- Assessor Recommendations*
+ 
+`Typical Documentation to Assess Requirement 6:`
+```• Patch management procedures
+• System inventory
+• Vulnerability alerting procedures
+• Vendor vulnerability lists
+• Software development policy and procedures
+• Test/Development Processes and Procedures
+• Change Control Documentation, policies and procedures
+• Sample of change requests
+• Test/Development access control lists
+• Database output from test/development systems
+• Current Network Diagram
+• Secure coding procedures
+• Evidence of secure code training
+• Either web application vulnerability assessment results, or web application firewall (or other technology) configurations```
+
+`Typical testing activities for Requirement 6:`
+```• Compare current patch list with patches installed on system components
+• Review patch deployment records
+• Review coding practices and system configurations to ensure all sub-requirements are met
+• Review internal network configuration to confirm separation between development/test and production environments
+• Interview personnel to verify separation of duties
+• Review Change Control Processes and Procedures
+• Review a sample of changes (can be paper, online, etc.) and verify ALL required information is present in the change record
+• Verify change and patch records match system configurations
+• Interview developers to verify secure coding procedures are understood and followed
+• Verify secure coding procedures address vulnerabilities
+• Review results of application vulnerability testing and verify all vulnerabilities are addressed```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 7- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 7`
+```• Information security policy
+• Access control policy
+• New user request forms
+• Documented business justification for groups that have access
+• System configuration standards
+• User list for all in-scope systems```
+
+`Typical testing activities for Requirement 7`
+```• Review new user requests (paper or electronic)
+• Interview system administers and users with access to  systems and/or CHD
+• Confirm administration rights are required for users with such privilege
+• Confirm authorization forms or electronic processes are signed/approved by management
+• Ensure systems are configured and operating in accordance with documented access controls```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 8- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 8`
+```• Access control and password policies
+• Access control processes and procedures
+• Procedures for issuing and resetting passwords and other authentication mechanism
+• System configuration standards
+• Vendor documentation
+• User access lists from all in scope network devices, systems, and applications
+• User access lists from all systems, applications, and databases with access to cardholder data```
+
+`Typical Measures to Test and Assess Requirement 8`
+```• Review a sample of systems and confirm all passwords are unreadable during transmission and storage
+• Observe remote login process and verify all remote access to in-scope networks require use of multi-factor authentication
+• Through interviews and a review of sample systems, ensure all password settings are configured correctly
+• Examine systems and/or screen shots as evidence of strong authentication
+• Compare user access lists on system components to authorization forms
+• Observe processes for granting access, changing passwords, etc.
+• Identify terminated user accounts and verify accounts disabled
+• Identify and observe use of vendor accounts```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 9- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 9:`
+```• Physical security policy and procedures
+• Visitor handling procedures
+• Physical access control device logs
+• Network diagrams
+• Media distribution policy and procedures
+• Media destruction policy and procedures
+• Media inventory
+• Visitor Log
+• Vendor documentation for secure wipe programs
+• Procedures for inspecting card-reading devices at the point-of-sale
+• List of card-reading devices point-of-sale locations
+• Training materials for personnel at point-of-sale locations```
+
+`Typical testing activities for Requirement 9:`
+```• Visually verify physical security controls for locations where cardholder data is stored, transmitted or processed
+• Observe retention of access and monitoring device records
+• Through interview and observation, verify all media storage and distribution is done in a secure manner and according to requirements
+• Observe locations and access to physical network ports in public areas
+• Observe the use of visitor ID badges to verify that a visitor ID badge does not permit unescorted access to physical areas that store cardholder data
+• Onsite observation of visitors; completion of visitor log, use and return of badges
+• Review visitor logs and verify retention
+• Review latest media inventory and confirm that it is less than a year old and covers all media containing CHD including paper, CDs, disk drives, etc.
+• Observe secure destruction methods used for physical and electronic media
+• Examine devices to verify an up to date list of devices for Requirement 9.9 is maintained
+• Interview personnel to verify that devices are periodically inspected and personnel are aware of procedures for handling devices and reporting suspicious activity```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 10- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 10:`
+```• Information security policy
+• Audit logging procedures
+• Logs from a sample of applications, databases, systems, and network devices
+• Network Time synchronization procedures
+• System configuration standards
+• Audit log retention policy
+• Audit log review procedures and follow-up activities```
+
+`Typical Measures to Test and Assess Requirement 10:`
+```• Observe system configurations to verify audit logs are enabled
+• Interview system administrators and observe system configurations and actual log files to identify what events are logged and the details recorded for each event
+• Review user access lists to audit logs – verify all access is justified
+• Observe system configurations and log files to verify logs are sent to a secured, centralized log server
+• Review log server settings to verify logs cannot be altered
+• Review log files to verify retention period
+• Through interviews and observation of process verify that log reviews are performed
+• Review FIM configuration used on audit logs
+• Review system time configurations to verify systems are synchronized and that time data is secured from unauthorized alteration```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 11- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 11:`
+```• Information security policy and procedures
+• System configuration standards
+• Network diagram
+• IDS/IPS configuration documents
+• Wireless IDS/IPS configuration, wireless analyzer scan results etc.
+• Incident response plan
+• Internal vulnerability scans for last 12 months
+• External vulnerability scans for last 12 months
+• Re-scans after significant changes
+• Penetration testing policies and scope of work
+• Internal penetration test results
+• External penetration test results
+• FIM configuration and reports```
+ 
+`Typical Measures to Test and Assess Requirement 11:`
+```• Verify wireless analyzer scans and/or other testing methods are completed for all locations at least quarterly 
+• Review incident response plan process and alerts to verify response upon detection of a rogue wireless devise 
+• Review IDS/IPS configurations and verify coverage of all traffic at the perimeter and at critical points within the cardholder data environment and that alerts are generated 
+• Verify IDS/IPS solution sends alerts to audit logging sever 
+• Review of internal and external vulnerability scan reports, to verify: 
+• Four quarters of passing scans within last 12 months 
+• Compare with change records to verify vulnerability scans performed after major changes 
+• Interview scan personnel (if internal) and verify personnel are qualified to perform scans 
+• Review penetration test reports to verify tests include external and internal testing, network layer testing, and application layer testing
+• Review results of penetration testing on segmentation controls 
+• Verify qualifications for penetration testing personnel
+• Verify FIM products are implemented on all critical systems 
+• Review FIM configuration and interview personnel to verify integrity checks are performed```
+
+        `PCIDSS v3.2.1`
+%
+*Requirement 12- Assessor Recommendations*
+
+`Typical Documentation to Assess Requirement 12:`
+```• Information security policies and procedures
+• Results from latest risk assessment
+• Operational security procedures
+• Usage policies
+• Job descriptions, roles, and responsibilities
+• Security awareness program
+• Records of attendance to security training
+• Sample of formal acknowledgements of adherence to policy
+• Screening procedures
+• List of service providers
+• Service provider engagement process
+• Incident Response Plan and procedures
+• Results from Incident Response Plan testing```
+
+`Typical Measures to Test and Assess Requirement 12:`
+```• Fully review information security policy and procedures and ensure all requirements are addressed
+• Review process for updating information security policy
+• Observe distribution of policy and interview personnel to verify knowledge and understanding of security policy requirements and their information security responsibilities
+• Observe distribution of information security awareness materials
+• Review training attendance to verify all personnel are included upon hire and at least annually
+• Interview Human Resources personnel to understand screening processes
+• Review list of third party service providers and verify due diligence processes in place
+• Review Incident Response Plan and ensure it covers everything in Requirement 12.10
+• Review documentation from a previously reported incident or alert to verify the incident response plan and procedures were followed
+• Review results of incident response plan testing
+• Review evidence of training for security response personnel
+• Interview security response personnel to verify procedures in place```
+
+        `PCIDSS v3.2.1`
+%
+*PCIDSS recurring tasks*
+
+*Requirements	-	Description*
+`Scoping` Conducting activities to confirm the accuracy of the PCI DSS scope, `identifying all locations and flows of cardholder data` and ensuring they are included in the scope at least `annually`.
+`1.1.7`	`Reviewing firewall and router rule sets` at least `every six months`.
+`3.1` Performing a review to `identify and securely delete stored cardholder data` that exceeds defined retention at least `quarterly`.
+`3.6.4` Performing `cryptographic key changes` for keys that have reached the end of their `crypto-period`. [Ok, so this one can be a bit tenuous dependent upon your encryption algorithms and key strength]
+`5.1.2` `Periodically` performing a `review of evolving malware threats` in order to confirm whether system not commonly affected by virus continue to not require anti-virus software.
+`5.2` `Maintaining anti-virus software` (the engine and definitions) and performing `periodic` scans.
+`6.6` Reviewing public-facing web applications via manual or automated application `vulnerability security assessment` tools or methods at least `annually`.
+Note: Not applicable if you use a Web Application Firewall
+`8.1.4` Performing a `review of user accounts` to remove/disable inactive users at least `quarterly`.
+`9.5.1` Conducting a `review of the security of locations` used to store media backups at least `annually`.
+`9.7.1` Performing a `review of the media inventories` at least `annually`
+`9.9.2` Performing `periodic` physical `inspection of POS device` surfaces to detect tampering (for example, addition of card skimmers to devices), or substitution (for example, by checking the serial number or other device characteristics to verify it has not been swapped with a fraudulent device)
+`10.6` Reviewing `review of logs and security events` for all system components to identify anomalies or suspicious activity at least `daily`. 
+`10.6.2` `Reviewing logs` from all other system components `periodically` based on the organisation’s policies and risk management strategy, as determined by the organisation’s annual risk assessment.
+`11.1` `Test for the presence of all authorised and unauthorised wireless access points` on a `quarterly` basis.
+`11.2` Conducting `vulnerability scans` of the internal and external networks at least `quarterly`.
+`11.3` Conducting a `penetration test` that includes a review and consideration of threats and vulnerabilities experienced in the last 12 months at least `every six months`.
+`11.5` Perform a `comparison of critical files` using change-detection mechanisms, such as file integrity monitoring software, `at least weekly`.
+`12.1.1` Performing a `review of` the organisation’s `security policies` at least `annually`.
+`12.2` Conducting the organisation’s formal `risk assessment` at least `annually`.
+`12.6.1` Re-educating individuals as part of the organisation’s formal `security awareness programm` at least `annually`.
+`12.6.2` Individuals formally acknowledging that they have `read and understood the security policy` and procedures at least `annually`.
+`12.8.4` Monitor the `compliance status of service providers` at least `annually`.
+`12.10.2` Test the organisation’s the `incident response plan/s` at least `annually`.
+%
