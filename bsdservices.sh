@@ -6,7 +6,7 @@ pkg update
 pkg upgrade
 sysrc ifconfig_em1="inet 192.168.30.1/24 up"
 service netif restart
-pkg install -y bash bash-completion sudo isc-dhcp44-server-4.4.2 apache24-2.4.43 bind916-9.16.3 curl php72 mod_php72 php72-mbstring php72-pecl-mcrypt php72-zlib php72-curl php72-gd php72-json mariadb104-server-10.4.13_1 mariadb104-client-10.4.13_1 php72-mysqli pure-ftpd openssl
+pkg install -y gsed bash bash-completion sudo isc-dhcp44-server-4.4.2_1 apache24-2.4.48 bind916-9.16.18 curl php74 mod_php74 php74-mbstring php74-pecl-mcrypt php74-zlib php74-curl php74-gd php74-json mariadb105-server-10.5.10 mariadb105-client-10.5.10 php74-mysqli pure-ftpd openssl
 sysrc dhcpd_enable=YES
 sysrc named_enable="YES"
 sysrc apache24_enable="yes"
@@ -28,6 +28,7 @@ subnet 192.168.30.0 netmask 255.255.255.0 {
 }
 EOF
 sed -i -e '/listen-on/ s/127.0.0.1;/127.0.0.1; 192.168.30.1;/g' /usr/local/etc/namedb/named.conf
+gsed -i -e '/listen-on/a\ forwarders { 8.8.8.8; };' /usr/local/etc/namedb/named.conf
 cat << EOF >> /usr/local/etc/namedb/named.conf
 zone "ellanoteama.net" {
         type master;
